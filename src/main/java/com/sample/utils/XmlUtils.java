@@ -53,7 +53,6 @@ public class XmlUtils {
         document = DocumentHelper.parseText(xmlText);
         JSONArray resJson = func(protocol, "@Main", document);
         return resJson.getJSONObject(0);
-
     }
 
     public static JSONArray func(JSONObject protocol, String code, Document document) throws DocumentException {
