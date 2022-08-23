@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generate.XmlBodyDao">
+  <resultMap id="BaseResultMap" type="generate.XmlBody">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="nodeName" jdbcType="VARCHAR" property="nodename" />
+    <result column="nodeType" jdbcType="VARCHAR" property="nodetype" />
+    <result column="defaultValue" jdbcType="VARCHAR" property="defaultvalue" />
+    <result column="parentNode" jdbcType="VARCHAR" property="parentnode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `nodeName`, nodeType, defaultValue, parentNode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xml_body
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from xml_body
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="generate.XmlBody" useGeneratedKeys="true">
+    insert into xml_body (`nodeName`, nodeType, defaultValue, 
+      parentNode)
+    values (#{nodename,jdbcType=VARCHAR}, #{nodetype,jdbcType=VARCHAR}, #{defaultvalue,jdbcType=VARCHAR}, 
+      #{parentnode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="generate.XmlBody" useGeneratedKeys="true">
+    insert into xml_body
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nodename != null">
+        `nodeName`,
+      </if>
+      <if test="nodetype != null">
+        nodeType,
+      </if>
+      <if test="defaultvalue != null">
+        defaultValue,
+      </if>
+      <if test="parentnode != null">
+        parentNode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nodename != null">
+        #{nodename,jdbcType=VARCHAR},
+      </if>
+      <if test="nodetype != null">
+        #{nodetype,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultvalue != null">
+        #{defaultvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="parentnode != null">
+        #{parentnode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="generate.XmlBody">
+    update xml_body
+    <set>
+      <if test="nodename != null">
+        `nodeName` = #{nodename,jdbcType=VARCHAR},
+      </if>
+      <if test="nodetype != null">
+        nodeType = #{nodetype,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultvalue != null">
+        defaultValue = #{defaultvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="parentnode != null">
+        parentNode = #{parentnode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="generate.XmlBody">
+    update xml_body
+    set `nodeName` = #{nodename,jdbcType=VARCHAR},
+      nodeType = #{nodetype,jdbcType=VARCHAR},
+      defaultValue = #{defaultvalue,jdbcType=VARCHAR},
+      parentNode = #{parentnode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
