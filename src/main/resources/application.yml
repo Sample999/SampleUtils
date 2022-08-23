@@ -3,7 +3,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sample_utils?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://106.54.174.98:3306/sample_utils?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
     username: root
     password: admin
     type: com.alibaba.druid.pool.DruidDataSource
@@ -23,3 +23,8 @@ mybatis-plus:
   mapper-locations: classpath:/mapper/*mapper.xml
 server:
   port: 8099
+
+logging:
+  file:
+    name: D:/Programs/ELK/logs/logstash.log
+
