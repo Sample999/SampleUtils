@@ -5,9 +5,11 @@ import com.sample.utils.XmlUtils;
 import com.sample.web.dto.AjaxResult;
 import com.sample.web.dto.HaveDateDto;
 import com.sample.web.dto.XmlProtocolDto;
+import io.swagger.annotations.Api;
 import org.dom4j.DocumentException;
 import org.springframework.web.bind.annotation.*;
 
+@Api(tags = "XML转换")
 @RestController
 @RequestMapping("/xml")
 public class XmlController {
@@ -27,6 +29,12 @@ public class XmlController {
 
     @GetMapping("/data")
     public AjaxResult getData(HaveDateDto dateDto){
+        System.out.println(dateDto.toString());
+        return AjaxResult.success();
+    }
+
+    @GetMapping("/data2")
+    public AjaxResult getTest(@RequestBody JSONObject dateDto){
         System.out.println(dateDto.toString());
         return AjaxResult.success();
     }
